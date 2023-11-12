@@ -31,6 +31,7 @@ app.UseCors(opt =>
 {
     opt.AllowAnyHeader()
         .AllowAnyMethod()
+        .AllowCredentials()  // For allowing cookies
         .WithOrigins("http://localhost:3000");
 });
 
