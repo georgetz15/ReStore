@@ -4,7 +4,7 @@ import {BasketItem} from "../../app/models/basketItem";
 import agent from "../../app/api/agent";
 import {Order} from "../../app/models/order";
 import LoadingComponent from "../../app/layout/LoadingComponent";
-import {Button, Grid} from "@mui/material";
+import {Button, Grid, Typography} from "@mui/material";
 import BasketTable from "../basket/BasketTable";
 import BasketSummary from "../basket/BasketSummary";
 
@@ -25,6 +25,9 @@ export default function OrderDetails() {
     if (loading) return <LoadingComponent message={'Loading orders...'}/>
 
     return <>
+        <Typography variant={'h6'}>
+            Order #{order?.id}: {order?.orderStatus}
+        </Typography>
         <BasketTable items={order?.orderItems as BasketItem[] || []} isBasket={false}/>
         <Grid container>
             <Grid item xs={6}/>

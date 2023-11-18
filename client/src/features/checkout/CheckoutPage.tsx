@@ -10,6 +10,7 @@ import agent from "../../app/api/agent";
 import {useAppDispatch} from "../../app/store/configureStore";
 import {clearBasket} from "../basket/basketSlice";
 import {LoadingButton} from "@mui/lab";
+import { Link } from "react-router-dom";
 
 const steps = ['Shipping address', 'Review your order', 'Payment details'];
 
@@ -93,7 +94,7 @@ export default function CheckoutPage() {
                                 Thank you for your order.
                             </Typography>
                             <Typography variant="subtitle1">
-                                Your order number is #{orderNumber}. We have not emailed your order
+                                Your order number is <Link to={`/orders/${orderNumber}`}>#{orderNumber}</Link>. We have not emailed your order
                                 confirmation, and will not send you an update when your order has
                                 shipped as this is a fake store!
                             </Typography>
