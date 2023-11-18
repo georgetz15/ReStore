@@ -81,8 +81,20 @@ public class AccountController : BaseApiController
     public async Task<ActionResult<UserDto>> GetCurrentUser()
     {
         var user = await _userManager.FindByNameAsync(User.Identity.Name);
+        var userBasket = await FindBasket(User.Identity.Name);
 
-        return new UserDto { Email = user.Email, Token = await _tokenService.GenerateToken(user) };
+        return new UserDto
+            { Email = user.Email, Token = await _tokenService.GenerateToken(user), Basket = userBasket?.ToDto() };
+    }
+    
+    [Authorize]
+    [HttpGet("savedAddress")]
+    public async Task<ActionResult<UserAddress>> GetSavedAddress()
+    {
+        return await _userManager.Users
+            .Where(x => x.UserName == User.Identity.Name)
+            .Select(user => user.Address)
+            .FirstOrDefaultAsync();
     }
 
     private async Task<Basket> FindBasket(string buyerId)

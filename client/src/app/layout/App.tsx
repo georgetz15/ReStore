@@ -9,6 +9,7 @@ import LoadingComponent from './LoadingComponent';
 import {useAppDispatch} from '../store/configureStore';
 import {fetchBasketAsync} from '../../features/basket/basketSlice';
 import {fetchCurrentUser} from '../../features/account/accountSlice';
+import HomePage from '../../features/home/HomePage';
 
 function App() {
     const dispatch = useAppDispatch();
@@ -16,8 +17,8 @@ function App() {
 
     const initApp = useCallback(async () => {
         try {
-            dispatch(fetchCurrentUser());
-            dispatch(fetchBasketAsync());
+            await dispatch(fetchCurrentUser());
+            await dispatch(fetchBasketAsync());
         } catch (error) {
             console.error(error)
         }
@@ -50,9 +51,12 @@ function App() {
                 <ToastContainer position='bottom-right' hideProgressBar theme='colored'/>
                 <CssBaseline/>
                 <Header darkMode={darkMode} onChange={handleThemeChange}/>
-                <Container>
-                    <Outlet/>
-                </Container>
+                {loading ? <LoadingComponent message="Initialising app..."/>
+                    : location.pathname === '/' ? <HomePage/>
+                        : <Container sx={{mt: 4}}>
+                            <Outlet/>
+                        </Container>
+                }
             </ThemeProvider>
         </>
     )

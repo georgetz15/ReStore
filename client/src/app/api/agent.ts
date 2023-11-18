@@ -2,7 +2,7 @@
 import {toast} from "react-toastify";
 import {router} from "../router/Routes";
 import {PaginatedResponse} from "../models/pagination";
-import { store } from "../store/configureStore";
+import {store} from "../store/configureStore";
 
 const sleep = () => new Promise(resolve => setTimeout(resolve, 500));
 
@@ -14,7 +14,7 @@ const responseBody = (res: AxiosResponse) => res.data
 axios.interceptors.request.use(config => {
     const token = store.getState().account.user?.token;
     if (token) config.headers.Authorization = `Bearer ${token}`;
-    
+
     return config;
 })
 
@@ -92,6 +92,13 @@ const Account = {
     login: (values: any) => requests.post(`account/login`, values),
     register: (values: any) => requests.post(`account/register`, values),
     currentUser: () => requests.get(`account/currentUser`),
+    fetchAddress: () => requests.get('account/savedAddress'),
+}
+
+const Orders = {
+    list: () => requests.get('orders'),
+    fetch: (id: number) => requests.get(`orders/${id}`),
+    create: (values: any) => requests.post('orders', values),
 }
 
 const agent = {
@@ -99,6 +106,7 @@ const agent = {
     Buggy,
     Basket,
     Account,
+    Orders,
 }
 
 export default agent
