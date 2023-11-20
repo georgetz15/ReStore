@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for restore-gtzoupis on 2023-11-20T22:29:31+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "restore-gtzoupis"
+primary_region = "ams"
+
+[build]
+  image = "gtzoupis/restore:latest"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[env]
+  ASPNETCORE_URLS="http://+:8080"
+  StripeSettings__PublishableKey="pk_test_51OEEn7CPTnLdrO5aXGKowwoleCtBCz9Yth2Zx4UJmq0yLZaPQgSdjvaqsgAPTrWpvtRmhK3v9S41xP9a6YD9732i00qod3aAt6"

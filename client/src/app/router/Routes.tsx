@@ -1,6 +1,5 @@
 ﻿import {createBrowserRouter, Navigate} from "react-router-dom";
 import App from "../layout/App";
-import HomePage from "../../features/home/HomePage";
 import ContactPage from "../../features/contact/ContactPage";
 import AboutPage from "../../features/about/AboutPage";
 import Catalog from "../../features/catalog/Catalog";
@@ -28,7 +27,6 @@ export const router = createBrowserRouter([{
                 {path: '/orders/:id', element: <OrderDetails/>},
             ]
         },
-        {path: '', element: <HomePage/>},
         {path: '/about', element: <AboutPage/>},
         {path: '/contact', element: <ContactPage/>},
         {path: '/catalog', element: <Catalog/>},
