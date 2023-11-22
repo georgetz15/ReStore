@@ -16,6 +16,6 @@ public class CreateProductDto
     [Required] public string Brand { get; set; }
 
     [Required]
-    [Range(1, double.PositiveInfinity)]
+    [Range(0, double.PositiveInfinity)]
     public int QuantityInStock { get; set; }
 }
