@@ -20,3 +20,5 @@ primary_region = "ams"
 [env]
   ASPNETCORE_URLS="http://+:8080"
   StripeSettings__PublishableKey="pk_test_51OEEn7CPTnLdrO5aXGKowwoleCtBCz9Yth2Zx4UJmq0yLZaPQgSdjvaqsgAPTrWpvtRmhK3v9S41xP9a6YD9732i00qod3aAt6"
+  Cloudinary__CloudName="dmutof3es"
+  Cloudinary__ApiKey="329733282246829"
